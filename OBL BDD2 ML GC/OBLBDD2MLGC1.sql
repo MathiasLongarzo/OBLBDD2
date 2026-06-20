@@ -368,7 +368,6 @@ INSERT INTO viajes VALUES (22,2,3,'2025-05-05','2026-10-15',11,'2026-10-20',5300
 INSERT INTO viajes VALUES (23,3,4,'2025-05-10','2026-11-01',22,'2026-11-04',60000,'REALIZADO',7,'OUT-007')
 INSERT INTO viajes VALUES (24,4,4,'2025-05-15','2026-11-10',14,'2026-11-14',65000,'REALIZADO',7,'OUT-007')
 INSERT INTO viajes VALUES (25,5,1,'2025-05-20','2026-11-20',1,'2026-11-30',42000,'REALIZADO',3,'OUT-002')
-INSERT INTO viajes VALUES (26,6,1,'2025-05-25','2026-12-01',2,'2026-12-05',58000,'REALIZADO',3,'OUT-002')
 INSERT INTO viajes VALUES (27,7,12,'2025-06-01','2027-01-01',17,'2027-01-05',47000,'REALIZADO',12,'OUT-012')
 INSERT INTO viajes VALUES (28,8,12,'2025-06-05','2027-01-10',15,'2027-01-15',33000,'REALIZADO',12,'OUT-018')
 
@@ -383,7 +382,6 @@ INSERT INTO viajes VALUES (35,15,10,'2025-07-10','2027-05-01',20,'2027-05-03',15
 INSERT INTO viajes VALUES (36,16,9,'2025-07-15','2027-05-10',7,'2027-05-15',12000,'SUSPENDIDO',17,'OUT-009')
 
 -- oficina perfecta (11 y 12)
-INSERT INTO viajes VALUES (37,17,11,'2025-08-01','2027-06-01',24,'2027-06-02',9000,'REALIZADO',13,'OUT-011')
 INSERT INTO viajes VALUES (38,18,11,'2025-08-05','2027-06-10',6,'2027-06-11',21000,'RESERVADO',13,'OUT-011')
 INSERT INTO viajes VALUES (39,19,12,'2025-08-10','2027-07-01',18,'2027-07-03',27000,'REALIZADO',12,'OUT-012')
 INSERT INTO viajes VALUES (40,20,12,'2025-08-15','2027-07-10',15,'2027-07-14',31000,'EN VIAJE',12,'OUT-018')
@@ -452,20 +450,26 @@ INSERT INTO devoluciones(codPago,fechaDevolucion,montoDevuelto,motivo)
 VALUES (36,'2027-05-20',12000,'Distorsión cuántica')
 GO
 
--- =========================================
+
 -- NOTAS IMPORTANTES DEL DATASET
--- =========================================
+
 
 /*
-1) Los choferes 1, 3 y 7 son los que más años acumulan.
+1) Los choferes 1, 15 y 7 son los que más años acumulan.
 
-2) OUT-004, OUT-007, OUT-002 y OUT-012
+2) OUT-004, OUT-007, OUT-009 y OUT-018
 son los vehículos con más consumo acumulado.
 
 3) Hill Valley 1955 es el destino más solicitado
 pagado en efectivo.
 
 4) Existen oficinas perfectas:
+- Oficina 1
+- Oficina 2
+- Oficina 3
+- Oficina 4
+- Oficina 5
+- Oficina 8
 - Oficina 11
 - Oficina 12
 Nunca tuvieron viajes cancelados ni suspendidos.
@@ -473,22 +477,18 @@ Nunca tuvieron viajes cancelados ni suspendidos.
 5) Vehículos voladores que superan los 457 años:
 - OUT-001
 - OUT-002
-- OUT-004
+- OUT-008
+- OUT-011
 - OUT-012
 - OUT-013
-- OUT-018
 
 6) Hay choferes sin REALIZADOS pero con oficinas
 en su país que poseen RESERVADOS.
 
-7) H2O debería terminar siendo el combustible
+- Emmett Brown
+- Camila Lopez
+
+7) Rocas Volcánicas debería terminar siendo el combustible
 más rentable.
 
-8) Casos para función:
-- Cliente 1 ? TENIENTE
-- Cliente 4 ? COMANDANTE
-- Cliente 7 ? CORONEL
-- Cliente 10 ? A REVISAR
-- Algunos clientes con solo reservados ? EXPLORADOR
-*/
 
