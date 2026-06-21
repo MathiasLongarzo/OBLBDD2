@@ -1,0 +1,192 @@
+--CUERPOSCELESTES
+
+INSERT INTO [dbo].[CuerpoCelestes] (Nombre, Tipo, Magnitud, CantidadObservaciones)
+VALUES 
+('Luna', 'Satelite', -12.74, 2),
+('Júpiter', 'Planeta', -2.94, 1),
+('Saturno', 'Planeta', 0.46, 1),
+('Galaxia de Andrómeda', 'Galaxia', 3.44, 1),
+('Nebulosa de Orión', 'Nebulosa', 4.00, 1),
+('Marte', 'Planeta', -2.91, 1),
+('Venus', 'Planeta', -4.92, 1),
+('Cúmulo de las Pléyades', 'CumuloAbierto', 1.60, 1),
+('Nebulosa del Cangrejo', 'Nebulosa', 8.40, 1),
+('Galaxia del Remolino', 'Galaxia', 8.36, 0);
+
+-- TELESCOPIOS
+INSERT INTO [dbo].[Equipos] (Marca, Modelo, CantidadDisponible, TipoEquipo, Apertura, RelacionFocal, DistanciaFocal, Peso)
+VALUES 
+('Celestron', 'NexStar 8SE', 2, 'Telescopio', 203.2, 'f/10', 2032, 6.4),
+('Sky-Watcher', 'Explorer 150P', 3, 'Telescopio', 150, 'f/5', 750, 5.1),
+('Celestron', 'TravelScope 102', 2, 'Telescopio', 102, 'f/6.5', 663, 3.2),
+('Sky-Watcher', 'Dobson 10"', 1, 'Telescopio', 254, 'f/4.7', 1200, 13.5),
+('William Optics', 'ZenithStar 80', 4, 'Telescopio', 80, 'f/6', 480, 2.1),
+('Meade', 'LX90 8"', 2, 'Telescopio', 203, 'f/10', 2000, 7.8),
+('Orion', 'SkyQuest XT8', 3, 'Telescopio', 203, 'f/5.9', 1200, 12.0),
+('Celestron', 'AstroMaster 130EQ', 2, 'Telescopio', 130, 'f/5', 650, 4.5),
+('Sky-Watcher', 'Maksutov 127', 2, 'Telescopio', 127, 'f/11.8', 1500, 3.9),
+('Takahashi', 'FS-60CB', 1, 'Telescopio', 60, 'f/6.2', 372, 1.8);
+
+-- OCULARES
+INSERT INTO [dbo].[Equipos] (Marca, Modelo, CantidadDisponible, TipoEquipo, Diametro, AnguloVision)
+VALUES 
+('Celestron', 'Omni 25mm', 3, 'Ocular', 25, 52),
+('Baader', 'Hyperion 10mm', 2, 'Ocular', 10, 68),
+('Nagler', 'Type 6 6mm', 2, 'Ocular', 6, 82),
+('Sky-Watcher', 'Super 32mm', 4, 'Ocular', 32, 44),
+('Ethos', 'Ethos 9mm', 2, 'Ocular', 9, 100),
+('Celestron', 'X-Cel LX 18mm', 3, 'Ocular', 18, 60),
+('Baader', 'Morpheus 17.5mm', 2, 'Ocular', 18, 76),
+('Meade', 'Series 5000 5mm', 2, 'Ocular', 5, 100),
+('Explore Scientific', '82° 14mm', 3, 'Ocular', 14, 82),
+('Orion', 'Stratus 8mm', 2, 'Ocular', 8, 68);
+
+-- MONTURAS
+INSERT INTO [dbo].[Equipos] (Marca, Modelo, CantidadDisponible, TipoEquipo, Tipo, CargaUtil, EsGoTo)
+VALUES 
+('Sky-Watcher', 'EQ6-R Pro', 2, 'Montura', 0, 20, 1),
+('Celestron', 'NexStar SE', 3, 'Montura', 1, 8, 1),
+('Sky-Watcher', 'HEQ5 Pro', 2, 'Montura', 0, 15, 0),
+('iOptron', 'CubePro', 1, 'Montura', 2, 12, 1),
+('Vixen', 'Porta II', 4, 'Montura', 1, 5, 0),
+('Sky-Watcher', 'AZ-EQ6 GT', 2, 'Montura', 0, 20, 1),
+('Celestron', 'AVX', 3, 'Montura', 0, 13, 1),
+('iOptron', 'SkyGuider Pro', 2, 'Montura', 2, 5, 0),
+('Meade', 'LX85', 1, 'Montura', 0, 13, 1),
+('Vixen', 'GP2', 2, 'Montura', 1, 7, 0);
+
+-- CAMARAS
+INSERT INTO [dbo].[Equipos] (Marca, Modelo, CantidadDisponible, TipoEquipo, TipoSensor, Resolucion, TamanioPixel)
+VALUES 
+('ZWO', 'ASI294MC Pro', 2, 'Camara', 0, '4144x2822', 4.63),
+('ZWO', 'ASI183MC Pro', 2, 'Camara', 0, '3096x2080', 3.76),
+('QHY', 'QHY268C', 1, 'Camara', 1, '3326x2504', 5.4),
+('ZWO', 'ASI385MC', 3, 'Camara', 0, '1936x1096', 5.86),
+('Atik', 'Atik 414EX', 1, 'Camara', 1, '2048x2048', 7.4),
+('ZWO', 'ASI071MC Pro', 2, 'Camara', 0, '4144x2822', 4.78),
+('QHY', 'QHY163M', 2, 'Camara', 1, '4656x3520', 3.8),
+('Player One', 'Neptune-C II', 3, 'Camara', 0, '1920x1080', 2.9),
+('Atik', 'Atik Horizon', 1, 'Camara', 1, '4644x3506', 4.54),
+('ZWO', 'ASI678MC', 2, 'Camara', 0, '3840x2160', 2.0);
+
+-- USUARIOS
+
+INSERT INTO [dbo].[Usuarios] (NombreCompleto, Direccion, Telefono, Email, NombreUsuario, Contraseña_contraseña, Rol)
+VALUES
+('Carlos Martínez',   'Av. Italia 1234',        99123456, 'carlos.martinez@gmail.com',   'carlos_m',    'Admin1!@#$%^&*()', 'Administrador'),
+('Laura Fernández',   'Bvar. Artigas 567',       98234567, 'laura.fernandez@gmail.com',   'laura_f',     'Admin1!@#$%^&*()', 'Administrador'),
+('Diego Rodríguez',   'Calle Colonia 890',        97345678, 'diego.rodriguez@gmail.com',   'diego_r',     'Coord1!@#$%^&*()', 'Coordinador'),
+('Ana González',      'Av. 18 de Julio 321',      96456789, 'ana.gonzalez@gmail.com',      'ana_g',       'Coord1!@#$%^&*()', 'Coordinador'),
+('Martín López',      'Tristán Narvaja 654',      95567890, 'martin.lopez@gmail.com',      'martin_l',    'Coord1!@#$%^&*()', 'Coordinador'),
+('Valentina Pérez',   'Av. Brasil 987',           94678901, 'valentina.perez@gmail.com',   'valentina_p', 'Socio1!@#$%^&*()', 'Socio'),
+('Sebastián Torres',  'Jackson 147',              93789012, 'sebastian.torres@gmail.com',  'sebastian_t', 'Socio1!@#$%^&*()', 'Socio'),
+('Camila Núñez',      'Rbla. República 258',      92890123, 'camila.nunez@gmail.com',      'camila_n',    'Socio1!@#$%^&*()', 'Socio'),
+('Federico Suárez',   'Luis Piera 369',           91901234, 'federico.suarez@gmail.com',   'federico_s',  'Socio1!@#$%^&*()', 'Socio'),
+('Florencia Castro',  'Av. Libertador 741',       90012345, 'florencia.castro@gmail.com',  'florencia_c', 'Socio1!@#$%^&*()', 'Socio');
+
+
+-- PRESTAMOS
+
+INSERT INTO [dbo].[Prestamos] (FechaInicio, FechaFin, Estado, UsuarioId)
+VALUES
+('2026-05-01', '2026-05-07', 'Devuelto', 6),
+('2026-05-03', '2026-05-10', 'Devuelto', 7),
+('2026-05-05', '2026-05-12', 'Devuelto', 8),
+('2026-05-08', '2026-05-15', 'Devuelto', 9),
+('2026-05-10', '2026-05-17', 'Devuelto', 10),
+('2026-05-15', '2026-05-22', 'EnPrestamo', 6),
+('2026-05-18', '2026-05-25', 'EnPrestamo', 7),
+('2026-05-20', '2026-05-27', 'EnPrestamo', 8),
+('2026-06-01', '2026-06-08', 'EnPrestamo', 9),
+('2026-06-03', '2026-06-10', 'EnPrestamo', 10);
+
+-- OBSERVACIONES
+
+INSERT INTO [dbo].[Observaciones] (FechaObservacion, usuarioId, prestamoId, CuerpoCelesteid, EvaluacionVO_CompatibilidadIA, EvaluacionVO_DetalleIA)
+VALUES
+('2026-05-16', 6, 6, 2, 0, ':)'),
+('2026-05-18', 6, 6, 4, 1, 'La distancia focal es adecuada pero el campo resultante es algo reducido para esta galaxia.'),
+('2026-05-20', 6, 6, 5, 2, 'La distancia focal es demasiado corta para capturar detalle en esta nebulosa con el sensor disponible.'),
+('2026-05-19', 7, 7, 1, 1, 'El aumento resultante es algo elevado para la Luna con este ocular, se recomienda uno de mayor focal.'),
+('2026-05-22', 7, 7, 3, 2, 'El aumento resultante es demasiado elevado para Saturno con este ocular.'),
+('2026-05-21', 8, 8, 7, 1, 'La apertura es adecuada pero el píxel es algo grande para capturar detalle fino en este objeto.'),
+('2026-05-25', 8, 8, 9, 2, 'La distancia focal es demasiado corta para capturar detalle en esta nebulosa con el sensor disponible.'),
+('2026-06-02', 9, 9, 1, 1, 'El ocular ofrece un campo visual limitado para la Luna en este momento.'),
+('2026-06-05', 9, 9, 6, 2, 'El ocular ofrece un campo visual insuficiente para Marte en este momento de su ciclo.'),
+('2026-06-04', 10, 10, 8, 1, 'El telescopio de 60mm resuelve parcialmente el cúmulo pero limita el detalle visible.');
+
+-- PRESTAMOEQUIPOS
+
+INSERT INTO [dbo].[PrestamoEquipo] (PrestamoId, EquiposId)
+VALUES
+-- Préstamo 1: Telescopio 1 + Montura 21 + Cámara 31
+(1, 1),
+(1, 21),
+(1, 31),
+
+-- Préstamo 2: Telescopio 2 + Montura 23 + Ocular 11
+(2, 2),
+(2, 23),
+(2, 11),
+
+-- Préstamo 3: Telescopio 3 + Montura 24 + Cámara 32
+(3, 3),
+(3, 24),
+(3, 32),
+
+-- Préstamo 4: Telescopio 5 + Montura 25 + Ocular 12
+(4, 5),
+(4, 25),
+(4, 12),
+
+-- Préstamo 5: Telescopio 9 + Montura 27 + Cámara 33 + Ocular 13
+(5, 9),
+(5, 27),
+(5, 33),
+(5, 13),
+
+-- Préstamo 6: Telescopio 6 + Montura 26 + Cámara 34
+(6, 6),
+(6, 26),
+(6, 34),
+
+-- Préstamo 7: Telescopio 8 + Montura 29 + Ocular 14
+(7, 8),
+(7, 29),
+(7, 14),
+
+-- Préstamo 8: Telescopio 10 + Montura 28 + Cámara 35
+(8, 10),
+(8, 28),
+(8, 35),
+
+-- Préstamo 9: Telescopio 2 + Montura 21 + Ocular 15
+(9, 2),
+(9, 21),
+(9, 15),
+
+-- Préstamo 10: Telescopio 3 + Montura 30 + Ocular 16
+(10, 3),
+(10, 30),
+(10, 16);
+
+--AUDITORIAS
+
+INSERT INTO [dbo].[Auditorias] (fecha, Accion, UsuarioId, PrestamoId)
+VALUES
+('2026-05-01', 'Alta', 3, 1),
+('2026-05-03', 'Alta', 4, 2),
+('2026-05-05', 'Alta', 5, 3),
+('2026-05-08', 'Alta', 3, 4),
+('2026-05-10', 'Alta', 4, 5),
+('2026-05-15', 'Alta', 5, 6),
+('2026-05-18', 'Alta', 3, 7),
+('2026-05-20', 'Alta', 4, 8),
+('2026-06-01', 'Alta', 5, 9),
+('2026-06-03', 'Alta', 3, 10),
+
+('2026-05-07', 'Devolucion', 4, 1),
+('2026-05-10', 'Devolucion', 5, 2),
+('2026-05-12', 'Devolucion', 3, 3),
+('2026-05-15', 'Devolucion', 4, 4),
+('2026-05-17', 'Devolucion', 5, 5);

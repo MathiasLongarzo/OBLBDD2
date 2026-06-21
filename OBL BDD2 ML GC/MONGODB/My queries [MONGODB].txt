@@ -1,0 +1,87 @@
+My queries [MONGODB]
+
+9B
+
+[
+  { $match: { tipoEvaluado: "OFICINA" } },
+  {
+    $group: {
+      _id: "$entidadId",
+      promedioAtencion: {
+        $avg: "$calificaciones.atencion"
+      }
+    }
+  },
+  { $sort: { promedioAtencion: -1 } }
+]
+
+
+9C
+
+[
+  { $match: { tipoEvaluado: "VEHICULO" } },
+  {
+    $group: {
+      _id: "$entidadId",
+      promedioLimpieza: {
+        $avg: "$calificaciones.limpieza"
+      }
+    }
+  },
+  { $match: { promedioLimpieza: { $lt: 3 } } },
+  { $sort: { promedioLimpieza: 1 } }
+]
+
+9D
+
+[
+  { $match: { tipoEvaluado: "OFICINA" } },
+  {
+    $group: {
+      _id: "$entidadId",
+      totalEncuestas: { $sum: 1 },
+      noRecomendadas: {
+        $sum: {
+          $cond: [
+            {
+              $eq: [
+                "$calificaciones.recomendaria",
+                false
+              ]
+            },
+            1,
+            0
+          ]
+        }
+      }
+    }
+  },
+  {
+    $addFields: {
+      porcentajeNoRecomendado: {
+        $divide: [
+          "$noRecomendadas",
+          "$totalEncuestas"
+        ]
+      }
+    }
+  },
+  {
+    $match: {
+      porcentajeNoRecomendado: { $gt: 0.3 }
+    }
+  }
+]
+
+
+9E
+
+[
+  {
+    $group: {
+      _id: "$pais",
+      totalEncuestas: { $sum: 1 }
+    }
+  },
+  { $sort: { totalEncuestas: -1 } }
+]

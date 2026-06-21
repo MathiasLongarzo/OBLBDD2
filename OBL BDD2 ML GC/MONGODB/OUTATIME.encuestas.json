@@ -1,0 +1,595 @@
+[{
+  "_id": {
+    "$oid": "6a380c535c95479e8e3a371a"
+  },
+  "fecha": {
+    "$date": "2026-06-15T00:00:00.000Z"
+  },
+  "pais": "USA",
+  "tipoEvaluado": "OFICINA",
+  "entidadId": 12,
+  "calificaciones": {
+    "atencion": 4,
+    "tiempoEspera": 3,
+    "instalaciones": 5,
+    "recomendaria": true
+  }
+},
+{
+  "_id": {
+    "$oid": "6a380c535c95479e8e3a371b"
+  },
+  "fecha": {
+    "$date": "2026-06-10T00:00:00.000Z"
+  },
+  "pais": "Mexico",
+  "tipoEvaluado": "CHOFER",
+  "entidadId": 7,
+  "calificaciones": {
+    "puntualidad": 5,
+    "amabilidad": 4,
+    "conduccionSegura": 5,
+    "conocimientoDestino": 4
+  }
+},
+{
+  "_id": {
+    "$oid": "6a380c535c95479e8e3a371c"
+  },
+  "fecha": {
+    "$date": "2026-05-30T00:00:00.000Z"
+  },
+  "pais": "USA",
+  "tipoEvaluado": "VEHICULO",
+  "entidadId": "DELOREAN-001",
+  "calificaciones": {
+    "limpieza": 2,
+    "estadoMecanico": 3,
+    "comodidad": 4,
+    "seguridad": 5
+  }
+},
+{
+  "_id": {
+    "$oid": "6a3818b3c461f0167b076a2c"
+  },
+  "fecha": {
+    "$date": "2026-06-01T00:00:00.000Z"
+  },
+  "pais": "USA",
+  "tipoEvaluado": "OFICINA",
+  "entidadId": 12,
+  "calificaciones": {
+    "atencion": 5,
+    "tiempoEspera": 4,
+    "instalaciones": 5,
+    "recomendaria": true
+  }
+},
+{
+  "_id": {
+    "$oid": "6a3818b3c461f0167b076a2d"
+  },
+  "fecha": {
+    "$date": "2026-06-05T00:00:00.000Z"
+  },
+  "pais": "USA",
+  "tipoEvaluado": "OFICINA",
+  "entidadId": 12,
+  "calificaciones": {
+    "atencion": 4,
+    "tiempoEspera": 5,
+    "instalaciones": 4,
+    "recomendaria": true
+  }
+},
+{
+  "_id": {
+    "$oid": "6a3818b3c461f0167b076a2e"
+  },
+  "fecha": {
+    "$date": "2026-06-08T00:00:00.000Z"
+  },
+  "pais": "USA",
+  "tipoEvaluado": "OFICINA",
+  "entidadId": 12,
+  "calificaciones": {
+    "atencion": 5,
+    "tiempoEspera": 5,
+    "instalaciones": 5,
+    "recomendaria": true
+  }
+},
+{
+  "_id": {
+    "$oid": "6a3818b3c461f0167b076a2f"
+  },
+  "fecha": {
+    "$date": "2026-05-10T00:00:00.000Z"
+  },
+  "pais": "Mexico",
+  "tipoEvaluado": "OFICINA",
+  "entidadId": 5,
+  "calificaciones": {
+    "atencion": 3,
+    "tiempoEspera": 2,
+    "instalaciones": 3,
+    "recomendaria": false
+  }
+},
+{
+  "_id": {
+    "$oid": "6a3818b3c461f0167b076a30"
+  },
+  "fecha": {
+    "$date": "2026-05-12T00:00:00.000Z"
+  },
+  "pais": "Mexico",
+  "tipoEvaluado": "OFICINA",
+  "entidadId": 5,
+  "calificaciones": {
+    "atencion": 2,
+    "tiempoEspera": 3,
+    "instalaciones": 2,
+    "recomendaria": false
+  }
+},
+{
+  "_id": {
+    "$oid": "6a3818b3c461f0167b076a31"
+  },
+  "fecha": {
+    "$date": "2026-05-15T00:00:00.000Z"
+  },
+  "pais": "Mexico",
+  "tipoEvaluado": "OFICINA",
+  "entidadId": 5,
+  "calificaciones": {
+    "atencion": 3,
+    "tiempoEspera": 3,
+    "instalaciones": 3,
+    "recomendaria": true
+  }
+},
+{
+  "_id": {
+    "$oid": "6a3818b3c461f0167b076a32"
+  },
+  "fecha": {
+    "$date": "2026-05-18T00:00:00.000Z"
+  },
+  "pais": "Mexico",
+  "tipoEvaluado": "OFICINA",
+  "entidadId": 5,
+  "calificaciones": {
+    "atencion": 4,
+    "tiempoEspera": 2,
+    "instalaciones": 3,
+    "recomendaria": true
+  }
+},
+{
+  "_id": {
+    "$oid": "6a3818b3c461f0167b076a33"
+  },
+  "fecha": {
+    "$date": "2026-05-20T00:00:00.000Z"
+  },
+  "pais": "Mexico",
+  "tipoEvaluado": "OFICINA",
+  "entidadId": 5,
+  "calificaciones": {
+    "atencion": 3,
+    "tiempoEspera": 3,
+    "instalaciones": 2,
+    "recomendaria": true
+  }
+},
+{
+  "_id": {
+    "$oid": "6a3818b3c461f0167b076a34"
+  },
+  "fecha": {
+    "$date": "2026-06-02T00:00:00.000Z"
+  },
+  "pais": "Brasil",
+  "tipoEvaluado": "OFICINA",
+  "entidadId": 8,
+  "calificaciones": {
+    "atencion": 4,
+    "tiempoEspera": 4,
+    "instalaciones": 4,
+    "recomendaria": true
+  }
+},
+{
+  "_id": {
+    "$oid": "6a3818b3c461f0167b076a35"
+  },
+  "fecha": {
+    "$date": "2026-06-04T00:00:00.000Z"
+  },
+  "pais": "Brasil",
+  "tipoEvaluado": "OFICINA",
+  "entidadId": 8,
+  "calificaciones": {
+    "atencion": 5,
+    "tiempoEspera": 4,
+    "instalaciones": 5,
+    "recomendaria": true
+  }
+},
+{
+  "_id": {
+    "$oid": "6a3818b3c461f0167b076a36"
+  },
+  "fecha": {
+    "$date": "2026-06-06T00:00:00.000Z"
+  },
+  "pais": "Brasil",
+  "tipoEvaluado": "OFICINA",
+  "entidadId": 8,
+  "calificaciones": {
+    "atencion": 4,
+    "tiempoEspera": 5,
+    "instalaciones": 4,
+    "recomendaria": false
+  }
+},
+{
+  "_id": {
+    "$oid": "6a3818b3c461f0167b076a37"
+  },
+  "fecha": {
+    "$date": "2026-06-09T00:00:00.000Z"
+  },
+  "pais": "Brasil",
+  "tipoEvaluado": "OFICINA",
+  "entidadId": 8,
+  "calificaciones": {
+    "atencion": 5,
+    "tiempoEspera": 5,
+    "instalaciones": 5,
+    "recomendaria": true
+  }
+},
+{
+  "_id": {
+    "$oid": "6a3818b3c461f0167b076a38"
+  },
+  "fecha": {
+    "$date": "2026-05-22T00:00:00.000Z"
+  },
+  "pais": "Mexico",
+  "tipoEvaluado": "CHOFER",
+  "entidadId": 7,
+  "calificaciones": {
+    "puntualidad": 4,
+    "amabilidad": 5,
+    "conduccionSegura": 4,
+    "conocimientoDestino": 5
+  }
+},
+{
+  "_id": {
+    "$oid": "6a3818b3c461f0167b076a39"
+  },
+  "fecha": {
+    "$date": "2026-05-25T00:00:00.000Z"
+  },
+  "pais": "Mexico",
+  "tipoEvaluado": "CHOFER",
+  "entidadId": 7,
+  "calificaciones": {
+    "puntualidad": 3,
+    "amabilidad": 3,
+    "conduccionSegura": 4,
+    "conocimientoDestino": 3
+  }
+},
+{
+  "_id": {
+    "$oid": "6a3818b3c461f0167b076a3a"
+  },
+  "fecha": {
+    "$date": "2026-06-03T00:00:00.000Z"
+  },
+  "pais": "USA",
+  "tipoEvaluado": "CHOFER",
+  "entidadId": 3,
+  "calificaciones": {
+    "puntualidad": 5,
+    "amabilidad": 5,
+    "conduccionSegura": 5,
+    "conocimientoDestino": 5
+  }
+},
+{
+  "_id": {
+    "$oid": "6a3818b3c461f0167b076a3b"
+  },
+  "fecha": {
+    "$date": "2026-06-07T00:00:00.000Z"
+  },
+  "pais": "USA",
+  "tipoEvaluado": "CHOFER",
+  "entidadId": 3,
+  "calificaciones": {
+    "puntualidad": 4,
+    "amabilidad": 4,
+    "conduccionSegura": 5,
+    "conocimientoDestino": 4
+  }
+},
+{
+  "_id": {
+    "$oid": "6a3818b3c461f0167b076a3c"
+  },
+  "fecha": {
+    "$date": "2026-06-10T00:00:00.000Z"
+  },
+  "pais": "Brasil",
+  "tipoEvaluado": "CHOFER",
+  "entidadId": 9,
+  "calificaciones": {
+    "puntualidad": 3,
+    "amabilidad": 4,
+    "conduccionSegura": 3,
+    "conocimientoDestino": 4
+  }
+},
+{
+  "_id": {
+    "$oid": "6a3818b3c461f0167b076a3d"
+  },
+  "fecha": {
+    "$date": "2026-06-12T00:00:00.000Z"
+  },
+  "pais": "Brasil",
+  "tipoEvaluado": "CHOFER",
+  "entidadId": 9,
+  "calificaciones": {
+    "puntualidad": 4,
+    "amabilidad": 3,
+    "conduccionSegura": 4,
+    "conocimientoDestino": 3
+  }
+},
+{
+  "_id": {
+    "$oid": "6a3818b3c461f0167b076a3e"
+  },
+  "fecha": {
+    "$date": "2026-06-01T00:00:00.000Z"
+  },
+  "pais": "USA",
+  "tipoEvaluado": "VEHICULO",
+  "entidadId": "DELOREAN-001",
+  "calificaciones": {
+    "limpieza": 2,
+    "estadoMecanico": 3,
+    "comodidad": 4,
+    "seguridad": 4
+  }
+},
+{
+  "_id": {
+    "$oid": "6a3818b3c461f0167b076a3f"
+  },
+  "fecha": {
+    "$date": "2026-06-04T00:00:00.000Z"
+  },
+  "pais": "USA",
+  "tipoEvaluado": "VEHICULO",
+  "entidadId": "DELOREAN-001",
+  "calificaciones": {
+    "limpieza": 3,
+    "estadoMecanico": 2,
+    "comodidad": 3,
+    "seguridad": 4
+  }
+},
+{
+  "_id": {
+    "$oid": "6a3818b3c461f0167b076a40"
+  },
+  "fecha": {
+    "$date": "2026-05-14T00:00:00.000Z"
+  },
+  "pais": "Mexico",
+  "tipoEvaluado": "VEHICULO",
+  "entidadId": "BIFF-002",
+  "calificaciones": {
+    "limpieza": 5,
+    "estadoMecanico": 4,
+    "comodidad": 5,
+    "seguridad": 5
+  }
+},
+{
+  "_id": {
+    "$oid": "6a3818b3c461f0167b076a41"
+  },
+  "fecha": {
+    "$date": "2026-05-17T00:00:00.000Z"
+  },
+  "pais": "Mexico",
+  "tipoEvaluado": "VEHICULO",
+  "entidadId": "BIFF-002",
+  "calificaciones": {
+    "limpieza": 4,
+    "estadoMecanico": 5,
+    "comodidad": 4,
+    "seguridad": 4
+  }
+},
+{
+  "_id": {
+    "$oid": "6a3818b3c461f0167b076a42"
+  },
+  "fecha": {
+    "$date": "2026-05-21T00:00:00.000Z"
+  },
+  "pais": "Mexico",
+  "tipoEvaluado": "VEHICULO",
+  "entidadId": "BIFF-002",
+  "calificaciones": {
+    "limpieza": 5,
+    "estadoMecanico": 5,
+    "comodidad": 5,
+    "seguridad": 5
+  }
+},
+{
+  "_id": {
+    "$oid": "6a3818b3c461f0167b076a43"
+  },
+  "fecha": {
+    "$date": "2026-06-05T00:00:00.000Z"
+  },
+  "pais": "Brasil",
+  "tipoEvaluado": "VEHICULO",
+  "entidadId": "MARTY-003",
+  "calificaciones": {
+    "limpieza": 3,
+    "estadoMecanico": 3,
+    "comodidad": 3,
+    "seguridad": 3
+  }
+},
+{
+  "_id": {
+    "$oid": "6a3818b3c461f0167b076a44"
+  },
+  "fecha": {
+    "$date": "2026-06-11T00:00:00.000Z"
+  },
+  "pais": "Brasil",
+  "tipoEvaluado": "VEHICULO",
+  "entidadId": "MARTY-003",
+  "calificaciones": {
+    "limpieza": 3,
+    "estadoMecanico": 4,
+    "comodidad": 4,
+    "seguridad": 3
+  }
+},
+{
+  "_id": {
+    "$oid": "6a381c57c461f0167b076a45"
+  },
+  "fecha": {
+    "$date": "2026-05-05T00:00:00.000Z"
+  },
+  "pais": "USA",
+  "tipoEvaluado": "VEHICULO",
+  "entidadId": "OUTATIME-X",
+  "calificaciones": {
+    "limpieza": 1,
+    "estadoMecanico": 2,
+    "comodidad": 2,
+    "seguridad": 3
+  }
+},
+{
+  "_id": {
+    "$oid": "6a381c57c461f0167b076a46"
+  },
+  "fecha": {
+    "$date": "2026-05-08T00:00:00.000Z"
+  },
+  "pais": "USA",
+  "tipoEvaluado": "VEHICULO",
+  "entidadId": "OUTATIME-X",
+  "calificaciones": {
+    "limpieza": 2,
+    "estadoMecanico": 3,
+    "comodidad": 2,
+    "seguridad": 3
+  }
+},
+{
+  "_id": {
+    "$oid": "6a381c57c461f0167b076a47"
+  },
+  "fecha": {
+    "$date": "2026-05-11T00:00:00.000Z"
+  },
+  "pais": "USA",
+  "tipoEvaluado": "VEHICULO",
+  "entidadId": "OUTATIME-X",
+  "calificaciones": {
+    "limpieza": 2,
+    "estadoMecanico": 2,
+    "comodidad": 3,
+    "seguridad": 2
+  }
+},
+{
+  "_id": {
+    "$oid": "6a381c57c461f0167b076a48"
+  },
+  "fecha": {
+    "$date": "2026-05-16T00:00:00.000Z"
+  },
+  "pais": "Mexico",
+  "tipoEvaluado": "VEHICULO",
+  "entidadId": "TANNEN-004",
+  "calificaciones": {
+    "limpieza": 2,
+    "estadoMecanico": 3,
+    "comodidad": 3,
+    "seguridad": 4
+  }
+},
+{
+  "_id": {
+    "$oid": "6a381c57c461f0167b076a49"
+  },
+  "fecha": {
+    "$date": "2026-05-19T00:00:00.000Z"
+  },
+  "pais": "Mexico",
+  "tipoEvaluado": "VEHICULO",
+  "entidadId": "TANNEN-004",
+  "calificaciones": {
+    "limpieza": 3,
+    "estadoMecanico": 3,
+    "comodidad": 3,
+    "seguridad": 3
+  }
+},
+{
+  "_id": {
+    "$oid": "6a381c57c461f0167b076a4a"
+  },
+  "fecha": {
+    "$date": "2026-06-13T00:00:00.000Z"
+  },
+  "pais": "Brasil",
+  "tipoEvaluado": "VEHICULO",
+  "entidadId": "CLARA-005",
+  "calificaciones": {
+    "limpieza": 4,
+    "estadoMecanico": 4,
+    "comodidad": 4,
+    "seguridad": 4
+  }
+},
+{
+  "_id": {
+    "$oid": "6a381c57c461f0167b076a4b"
+  },
+  "fecha": {
+    "$date": "2026-06-15T00:00:00.000Z"
+  },
+  "pais": "Brasil",
+  "tipoEvaluado": "VEHICULO",
+  "entidadId": "CLARA-005",
+  "calificaciones": {
+    "limpieza": 5,
+    "estadoMecanico": 5,
+    "comodidad": 4,
+    "seguridad": 5
+  }
+}]

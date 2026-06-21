@@ -1,0 +1,159 @@
+{
+  $jsonSchema: {
+    bsonType: 'object',
+    required: [
+      'fecha',
+      'pais',
+      'tipoEvaluado',
+      'entidadId',
+      'calificaciones'
+    ],
+    properties: {
+      fecha: {
+        bsonType: 'date'
+      },
+      pais: {
+        bsonType: 'string'
+      },
+      tipoEvaluado: {
+        'enum': [
+          'OFICINA',
+          'CHOFER',
+          'VEHICULO'
+        ]
+      },
+      entidadId: {
+        bsonType: [
+          'int',
+          'string'
+        ]
+      },
+      calificaciones: {
+        bsonType: 'object'
+      }
+    },
+    oneOf: [
+      {
+        properties: {
+          tipoEvaluado: {
+            'enum': [
+              'OFICINA'
+            ]
+          },
+          calificaciones: {
+            bsonType: 'object',
+            required: [
+              'atencion',
+              'tiempoEspera',
+              'instalaciones',
+              'recomendaria'
+            ],
+            additionalProperties: false,
+            properties: {
+              atencion: {
+                bsonType: 'int',
+                minimum: 1,
+                maximum: 5
+              },
+              tiempoEspera: {
+                bsonType: 'int',
+                minimum: 1,
+                maximum: 5
+              },
+              instalaciones: {
+                bsonType: 'int',
+                minimum: 1,
+                maximum: 5
+              },
+              recomendaria: {
+                bsonType: 'bool'
+              }
+            }
+          }
+        }
+      },
+      {
+        properties: {
+          tipoEvaluado: {
+            'enum': [
+              'CHOFER'
+            ]
+          },
+          calificaciones: {
+            bsonType: 'object',
+            required: [
+              'puntualidad',
+              'amabilidad',
+              'conduccionSegura',
+              'conocimientoDestino'
+            ],
+            additionalProperties: false,
+            properties: {
+              puntualidad: {
+                bsonType: 'int',
+                minimum: 1,
+                maximum: 5
+              },
+              amabilidad: {
+                bsonType: 'int',
+                minimum: 1,
+                maximum: 5
+              },
+              conduccionSegura: {
+                bsonType: 'int',
+                minimum: 1,
+                maximum: 5
+              },
+              conocimientoDestino: {
+                bsonType: 'int',
+                minimum: 1,
+                maximum: 5
+              }
+            }
+          }
+        }
+      },
+      {
+        properties: {
+          tipoEvaluado: {
+            'enum': [
+              'VEHICULO'
+            ]
+          },
+          calificaciones: {
+            bsonType: 'object',
+            required: [
+              'limpieza',
+              'estadoMecanico',
+              'comodidad',
+              'seguridad'
+            ],
+            additionalProperties: false,
+            properties: {
+              limpieza: {
+                bsonType: 'int',
+                minimum: 1,
+                maximum: 5
+              },
+              estadoMecanico: {
+                bsonType: 'int',
+                minimum: 1,
+                maximum: 5
+              },
+              comodidad: {
+                bsonType: 'int',
+                minimum: 1,
+                maximum: 5
+              },
+              seguridad: {
+                bsonType: 'int',
+                minimum: 1,
+                maximum: 5
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}
