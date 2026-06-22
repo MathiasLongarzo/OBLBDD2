@@ -255,7 +255,6 @@ GO
 -- =========================================
 -- DESTINOS HISTORICOS
 -- =========================================
---Destinos no cargados :1,2,11,,14,22.
 
 INSERT INTO destinos VALUES (1,'Descubrimiento de América - 1492','1492-10-12 10:00')
 INSERT INTO destinos VALUES (2,'Caída del Imperio Romano - 476','0476-09-04 12:00')
@@ -334,12 +333,19 @@ INSERT INTO clientes VALUES (17,'Oliveira','Marina',7,67000)
 INSERT INTO clientes VALUES (18,'Bernard','Louis',8,99000)
 INSERT INTO clientes VALUES (19,'Acosta','Nicolas',1,54000)
 INSERT INTO clientes VALUES (20,'Lee','Haru',3,75000)
+
+GO
+
+-- =========================================
+-- CLIENTES NUEVOS (para EXPLORADOR y COMANDANTE)
+-- =========================================
+INSERT INTO clientes VALUES (21,'McFly','Marty Jr.',2,45000)
+INSERT INTO clientes VALUES (22,'Parker','Jennifer',2,85000)
 GO
 
 -- =========================================
 -- VIAJES
 -- =========================================
---Viajes no cargados:6,11,15,
 
 INSERT INTO viajes VALUES (1,1,1,'2025-01-01','2026-01-01',8,'2026-01-03',12000,'REALIZADO',3,'OUT-002')
 INSERT INTO viajes VALUES (2,2,3,'2025-01-05','2026-02-01',20,'2026-02-03',18000,'REALIZADO',1,'OUT-001')
@@ -385,6 +391,27 @@ INSERT INTO viajes VALUES (36,16,9,'2025-07-15','2027-05-10',7,'2027-05-15',1200
 INSERT INTO viajes VALUES (38,18,11,'2025-08-05','2027-06-10',6,'2027-06-11',21000,'RESERVADO',13,'OUT-011')
 INSERT INTO viajes VALUES (39,19,12,'2025-08-10','2027-07-01',18,'2027-07-03',27000,'REALIZADO',12,'OUT-012')
 INSERT INTO viajes VALUES (40,20,12,'2025-08-15','2027-07-10',15,'2027-07-14',31000,'EN VIAJE',12,'OUT-018')
+GO
+
+
+-- =========================================
+-- VIAJES NUEVOS
+-- =========================================
+
+-- Cliente 6 (Paolo Ricci) -> sube a 6 viajes -> CORONEL
+INSERT INTO viajes VALUES (41,6,6,'2025-09-01','2026-01-05',1,'2026-01-10',80000,'REALIZADO',5,'OUT-006')
+INSERT INTO viajes VALUES (42,6,6,'2025-09-05','2026-02-01',3,'2026-02-05',70000,'REALIZADO',5,'OUT-006')
+INSERT INTO viajes VALUES (43,6,6,'2025-09-10','2026-02-10',4,'2026-02-15',75000,'REALIZADO',14,'OUT-017')
+INSERT INTO viajes VALUES (44,6,6,'2025-09-15','2026-03-01',5,'2026-03-05',60000,'REALIZADO',5,'OUT-006')
+INSERT INTO viajes VALUES (45,6,6,'2025-09-20','2026-03-10',9,'2026-03-15',55000,'REALIZADO',14,'OUT-017')
+
+-- Cliente 21 -> 1 viaje RESERVADO -> EXPLORADOR
+INSERT INTO viajes VALUES (46,21,3,'2025-11-01','2027-01-01',16,'2027-01-10',20000,'RESERVADO',1,'OUT-002')
+
+-- Cliente 22 (Jennifer Parker) -> 3 viajes a destinos cercanos -> COMANDANTE
+INSERT INTO viajes VALUES (47,22,3,'2025-10-01','2026-04-01',19,'2026-04-05',30000,'REALIZADO',1,'OUT-002')
+INSERT INTO viajes VALUES (48,22,3,'2025-10-05','2026-04-10',24,'2026-04-14',28000,'REALIZADO',1,'OUT-002')
+INSERT INTO viajes VALUES (49,22,3,'2025-10-10','2026-04-20',7,'2026-04-25',32000,'REALIZADO',2,'OUT-001')
 GO
 
 -- =========================================
@@ -433,6 +460,21 @@ INSERT INTO pagos VALUES (39,39,'DEBITO',1,27000)
 INSERT INTO pagos VALUES (40,40,'EFECTIVO',1,31000)
 GO
 
+
+-- =========================================
+-- PAGOS NUEVOS (para mantener consistencia con los viajes nuevos)
+-- =========================================
+INSERT INTO pagos VALUES (41,41,'EFECTIVO',1,80000)
+INSERT INTO pagos VALUES (42,42,'DEBITO',1,70000)
+INSERT INTO pagos VALUES (43,43,'CREDITO',3,75000)
+INSERT INTO pagos VALUES (44,44,'TRANSFERENCIA',1,60000)
+INSERT INTO pagos VALUES (45,45,'EFECTIVO',1,55000)
+INSERT INTO pagos VALUES (46,46,'CREDITO',1,5000)
+INSERT INTO pagos VALUES (47,47,'EFECTIVO',1,30000)
+INSERT INTO pagos VALUES (48,48,'DEBITO',1,28000)
+INSERT INTO pagos VALUES (49,49,'TRANSFERENCIA',1,32000)
+GO
+
 -- =========================================
 -- DEVOLUCIONES
 -- =========================================
@@ -449,6 +491,344 @@ VALUES (35,'2027-05-05',15000,'Interferencia espacio-temporal')
 INSERT INTO devoluciones(codPago,fechaDevolucion,montoDevuelto,motivo)
 VALUES (36,'2027-05-20',12000,'Distorsión cuántica')
 GO
+
+
+
+------------------------------------------------------------------------------Ejercicio 4 Funcion de categorias para clientes
+
+CREATE FUNCTION dbo.fn_CategoriaCliente (@codCliente INT)
+RETURNS VARCHAR(20)
+AS
+BEGIN
+    DECLARE @cantViajes INT;
+    DECLARE @aniosAcumulados INT;
+    DECLARE @categoria VARCHAR(20);
+
+    SELECT 
+        @cantViajes = COUNT(*),
+        @aniosAcumulados = SUM(ABS(DATEDIFF(YEAR, v.fechaHora_salida, d.fecha_hora)))
+    FROM viajes v
+    INNER JOIN destinos d ON v.destino_codDestino = d.codDestino
+    WHERE v.codCliente = @codCliente
+      AND v.estado IN ('REALIZADO','EN VIAJE');
+
+    SET @cantViajes = ISNULL(@cantViajes, 0);
+    SET @aniosAcumulados = ISNULL(@aniosAcumulados, 0);
+
+    IF @cantViajes = 0
+        SET @categoria = 'EXPLORADOR';
+    ELSE IF @cantViajes <= 2 AND @aniosAcumulados < 30
+        SET @categoria = 'TENIENTE';
+    ELSE IF @cantViajes BETWEEN 3 AND 5 AND @aniosAcumulados BETWEEN 31 AND 60
+        SET @categoria = 'COMANDANTE';
+    ELSE IF @cantViajes >= 6 AND @aniosAcumulados > 61
+        SET @categoria = 'CORONEL';
+    ELSE
+        SET @categoria = 'A REVISAR';
+
+    RETURN @categoria;
+END
+GO
+
+
+SELECT 
+    c.codCliente,
+    c.nombre,
+    c.apellido,
+    COUNT(v.codViaje) AS cantViajes,
+    ISNULL(SUM(ABS(DATEDIFF(YEAR, v.fechaHora_salida, d.fecha_hora))),0) AS aniosAcumulados,
+    dbo.fn_CategoriaCliente(c.codCliente) AS categoria
+FROM clientes c
+LEFT JOIN viajes v ON v.codCliente = c.codCliente AND v.estado IN ('REALIZADO','EN VIAJE')
+LEFT JOIN destinos d ON v.destino_codDestino = d.codDestino
+GROUP BY c.codCliente, c.nombre, c.apellido
+ORDER BY c.codCliente;
+GO
+
+
+-------------------------------------------------Ejercicio 5 Store Procedure para devolucion de viajes viejos
+
+
+CREATE PROCEDURE sp_AplicarPoliticaDevolucionViajesViejos
+    @estado VARCHAR(10),
+    @cantidadDevoluciones INT OUTPUT,
+    @mensajeError VARCHAR(200) OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SET @cantidadDevoluciones = 0;
+    SET @mensajeError = NULL;
+
+    -- Validación del parámetro
+    IF @estado NOT IN ('RESERVADO','SUSPENDIDO')
+    BEGIN
+        SET @mensajeError = 'Estado inválido. Debe ser RESERVADO o SUSPENDIDO.';
+        RETURN;
+    END
+
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        -- 1) Las 4 oficinas con menos viajes REALIZADOS en los últimos 5 meses
+        DECLARE @oficinasMenosViajes TABLE (codOficina INT);
+
+        INSERT INTO @oficinasMenosViajes (codOficina)
+        SELECT TOP 4 o.codOficina
+        FROM oficinas o
+        LEFT JOIN viajes v
+            ON v.codOficina = o.codOficina
+           AND v.estado = 'REALIZADO'
+           AND v.fechaHora_vuelta >= DATEADD(MONTH, -5, GETDATE())
+        GROUP BY o.codOficina
+        ORDER BY COUNT(v.codViaje) ASC;
+
+        -- 2) Viajes "viejos" que cumplen estado + antigüedad + oficina de bajo movimiento
+        DECLARE @viajesViejos TABLE (codViaje INT, codPago INT, montoTotal MONEY);
+
+        INSERT INTO @viajesViejos (codViaje, codPago, montoTotal)
+        SELECT v.codViaje, p.codPago, p.montoTotal
+        FROM viajes v
+        INNER JOIN pagos p ON p.codViaje = v.codViaje
+        WHERE v.estado = @estado
+          AND v.fechaHoraContratacion <= DATEADD(MONTH, -6, GETDATE())
+          AND v.codOficina IN (SELECT codOficina FROM @oficinasMenosViajes);
+
+        -- 3) Generar las devoluciones (35% del monto total pagado)
+        INSERT INTO devoluciones (codPago, fechaDevolucion, montoDevuelto, motivo)
+        SELECT codPago, GETDATE(), montoTotal * 0.35,
+               'Cancelación por antigüedad y bajo movimiento de oficina'
+        FROM @viajesViejos;
+
+        SET @cantidadDevoluciones = @@ROWCOUNT;
+
+        -- 4) Cambiar el estado de esos viajes a CANCELADO
+        UPDATE viajes
+        SET estado = 'CANCELADO'
+        WHERE codViaje IN (SELECT codViaje FROM @viajesViejos);
+
+        IF @cantidadDevoluciones = 0
+            SET @mensajeError = 'No se encontraron viajes que cumplan con la política.';
+
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION;
+        SET @mensajeError = ERROR_MESSAGE();
+        SET @cantidadDevoluciones = 0;
+    END CATCH
+END
+GO
+
+
+
+
+DECLARE @cant INT, @msg VARCHAR(200);
+EXEC sp_AplicarPoliticaDevolucionViajesViejos 
+    @estado = 'RESERVADO', 
+    @cantidadDevoluciones = @cant OUTPUT, 
+    @mensajeError = @msg OUTPUT;
+
+SELECT @cant AS CantidadDevoluciones, @msg AS Mensaje;
+GO
+
+
+
+
+---------------------------Ejercicio 6 Tabla de auditoria de viajes rechazados y Trigger para cancelar viajes si el chofer supera el limite
+-- Tabla de auditoría
+CREATE TABLE auditoriaViajesRechazados(
+    codAuditoria INT IDENTITY PRIMARY KEY,
+    fechaIntento DATETIME2 DEFAULT GETDATE(),
+    codCliente INT REFERENCES clientes(codCliente),
+    codChofer INT REFERENCES choferes(codChofer),
+    codViaje INT,
+    fechaHoraSalida DATETIME2,
+    cantViajesPrevios INT,
+    aniosAcumuladosPrevios INT
+)
+GO
+
+CREATE TRIGGER trg_ValidarLimiteChofer
+ON viajes
+INSTEAD OF INSERT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Estadísticas previas (ya guardadas) de cada chofer involucrado en este INSERT
+    DECLARE @statsChofer TABLE (
+        codChofer INT PRIMARY KEY,
+        cantViajes INT,
+        aniosAcumulados INT
+    );
+
+    INSERT INTO @statsChofer (codChofer, cantViajes, aniosAcumulados)
+    SELECT v.codChoferAsignado,
+           COUNT(*),
+           ISNULL(SUM(ABS(DATEDIFF(YEAR, v.fechaHora_salida, d.fecha_hora))), 0)
+    FROM viajes v
+    INNER JOIN destinos d ON v.destino_codDestino = d.codDestino
+    WHERE v.estado IN ('REALIZADO','EN VIAJE')
+      AND v.codChoferAsignado IN (SELECT DISTINCT codChoferAsignado FROM inserted)
+    GROUP BY v.codChoferAsignado;
+
+    -- Insertar los viajes que SI cumplen la politica (chofer dentro de los limites)
+    INSERT INTO viajes (codViaje, codCliente, codOficina, fechaHoraContratacion, fechaHora_salida,
+                         destino_codDestino, fechaHora_vuelta, costo, estado, codChoferAsignado, patenteVehiculoAsignado)
+    SELECT i.codViaje, i.codCliente, i.codOficina, i.fechaHoraContratacion, i.fechaHora_salida,
+           i.destino_codDestino, i.fechaHora_vuelta, i.costo, i.estado, i.codChoferAsignado, i.patenteVehiculoAsignado
+    FROM inserted i
+    LEFT JOIN @statsChofer s ON s.codChofer = i.codChoferAsignado
+    WHERE NOT (ISNULL(s.cantViajes,0) > 15 AND ISNULL(s.aniosAcumulados,0) > 800);
+
+    -- Registrar en auditoria los que se rechazaron
+    INSERT INTO auditoriaViajesRechazados (codCliente, codChofer, codViaje, fechaHoraSalida, cantViajesPrevios, aniosAcumuladosPrevios)
+    SELECT i.codCliente, i.codChoferAsignado, i.codViaje, i.fechaHora_salida, s.cantViajes, s.aniosAcumulados
+    FROM inserted i
+    INNER JOIN @statsChofer s ON s.codChofer = i.codChoferAsignado
+    WHERE s.cantViajes > 15 AND s.aniosAcumulados > 800;
+
+    DECLARE @rechazados INT = @@ROWCOUNT;
+    IF @rechazados > 0
+        PRINT CONCAT('Se rechazaron ', @rechazados, ' viaje(s) por superar el límite del chofer. Ver auditoriaViajesRechazados.');
+END
+GO
+
+-- 13 viajes que hacen que el chofer 3 supere el límite (16 viajes, +800 años)
+-- IMPORTANTE: ejecutar como sentencias separadas, en este orden
+
+INSERT INTO viajes VALUES (50,9,1,'2025-09-01','2026-04-01',1,'2026-04-10',50000,'REALIZADO',3,'OUT-002')
+INSERT INTO viajes VALUES (51,10,1,'2025-09-02','2026-04-02',2,'2026-04-09',48000,'REALIZADO',3,'OUT-002')
+INSERT INTO viajes VALUES (52,16,1,'2025-09-03','2026-04-03',3,'2026-04-08',47000,'REALIZADO',3,'OUT-002')
+INSERT INTO viajes VALUES (53,17,1,'2025-09-04','2026-04-04',4,'2026-04-07',46000,'REALIZADO',3,'OUT-002')
+INSERT INTO viajes VALUES (54,18,1,'2025-09-05','2026-04-05',5,'2026-04-09',45000,'REALIZADO',3,'OUT-002')
+INSERT INTO viajes VALUES (55,19,1,'2025-09-06','2026-04-06',9,'2026-04-10',44000,'REALIZADO',3,'OUT-002')
+INSERT INTO viajes VALUES (56,20,1,'2025-09-07','2026-04-07',10,'2026-04-11',43000,'REALIZADO',3,'OUT-002')
+INSERT INTO viajes VALUES (57,8,1,'2025-09-08','2026-04-08',11,'2026-04-12',42000,'REALIZADO',3,'OUT-002')
+INSERT INTO viajes VALUES (58,7,1,'2025-09-09','2026-04-09',12,'2026-04-13',41000,'REALIZADO',3,'OUT-002')
+INSERT INTO viajes VALUES (59,6,1,'2025-09-10','2026-04-10',13,'2026-04-14',40000,'REALIZADO',3,'OUT-002')
+INSERT INTO viajes VALUES (60,5,1,'2025-09-11','2026-04-11',14,'2026-04-15',39000,'REALIZADO',3,'OUT-002')
+INSERT INTO viajes VALUES (61,4,1,'2025-09-12','2026-04-12',17,'2026-04-16',38000,'REALIZADO',3,'OUT-002')
+INSERT INTO viajes VALUES (62,3,1,'2025-09-13','2026-04-13',21,'2026-04-17',37000,'EN VIAJE',3,'OUT-002')
+GO
+
+
+-- Pagos correspondientes a esos 13 viajes (todos se insertaron OK)
+INSERT INTO pagos VALUES (50,50,'EFECTIVO',1,50000)
+INSERT INTO pagos VALUES (51,51,'DEBITO',1,48000)
+INSERT INTO pagos VALUES (52,52,'CREDITO',1,47000)
+INSERT INTO pagos VALUES (53,53,'TRANSFERENCIA',1,46000)
+INSERT INTO pagos VALUES (54,54,'EFECTIVO',1,45000)
+INSERT INTO pagos VALUES (55,55,'DEBITO',1,44000)
+INSERT INTO pagos VALUES (56,56,'CREDITO',1,43000)
+INSERT INTO pagos VALUES (57,57,'EFECTIVO',1,42000)
+INSERT INTO pagos VALUES (58,58,'DEBITO',1,41000)
+INSERT INTO pagos VALUES (59,59,'CREDITO',1,40000)
+INSERT INTO pagos VALUES (60,60,'EFECTIVO',1,39000)
+INSERT INTO pagos VALUES (61,61,'DEBITO',1,38000)
+INSERT INTO pagos VALUES (62,62,'CREDITO',1,37000)
+GO
+
+----Viaje que deberia ser rechazado (Correr despues del resto)
+INSERT INTO viajes VALUES (63,11,1,'2025-09-14','2026-04-14',23,'2026-04-18',36000,'REALIZADO',3,'OUT-002')
+GO
+
+-- No debería aparecer (fue rechazado, no se insertó en viajes)
+SELECT * FROM viajes WHERE codViaje = 63;
+
+-- Debería tener un registro nuevo con codChofer = 3
+SELECT * FROM auditoriaViajesRechazados;
+
+-- Confirmar los números reales del chofer 3 en ese momento
+SELECT COUNT(*) AS cantViajes, SUM(ABS(DATEDIFF(YEAR, v.fechaHora_salida, d.fecha_hora))) AS aniosAcumulados
+FROM viajes v
+INNER JOIN destinos d ON v.destino_codDestino = d.codDestino
+WHERE v.codChoferAsignado = 3 AND v.estado IN ('REALIZADO','EN VIAJE');
+GO
+
+------------------------Ejercicio 7 Trigger de devolucion de viajes cancelados
+
+CREATE TRIGGER trg_RecuperarLimiteCreditoPorPagoEliminado
+ON pagos
+AFTER DELETE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    ;WITH montosARecuperar AS (
+        SELECT v.codCliente, SUM(d.montoTotal) AS monto
+        FROM deleted d
+        INNER JOIN viajes v ON v.codViaje = d.codViaje
+        WHERE v.estado = 'CANCELADO'
+        GROUP BY v.codCliente
+    )
+    UPDATE c
+    SET c.LimiteCreditoMax = c.LimiteCreditoMax + m.monto
+    FROM clientes c
+    INNER JOIN montosARecuperar m ON m.codCliente = c.codCliente;
+END
+GO
+
+
+-----Para revisar que el trigger funcione
+SELECT codCliente, LimiteCreditoMax FROM clientes WHERE codCliente = 13; -- antes
+
+DELETE FROM devoluciones WHERE codPago = 33;  -- primero la devolución (por la FK)
+DELETE FROM pagos WHERE codPago = 33;         -- ahora sí se puede borrar el pago, viaje 33 está CANCELADO
+
+SELECT codCliente, LimiteCreditoMax FROM clientes WHERE codCliente = 13; -- después, debería subir 23000
+GO
+
+
+--------------------Ejercicio 8 Vista de los destino populares
+CREATE VIEW VW_DestinosModa
+AS
+
+WITH PromedioReservados AS
+(
+    SELECT
+        CAST(
+            COUNT(*) * 1.0 /
+            (SELECT COUNT(*) FROM choferes)
+        AS DECIMAL(10,2)) AS promedio
+    FROM viajes
+    WHERE estado = 'RESERVADO'
+)
+
+SELECT
+    d.codDestino,
+    d.descripcion,
+
+    COUNT(
+        DISTINCT CASE
+            WHEN v.estado = 'REALIZADO'
+             AND dbo.fn_CategoriaCliente(v.codCliente) <> 'EXPLORADOR'
+            THEN v.codViaje
+        END
+    ) AS viajesRealizados,
+
+    COUNT(DISTINCT v.codChoferAsignado) AS choferesDistintos,
+
+    COUNT(DISTINCT v.patenteVehiculoAsignado) AS vehiculosDistintos
+
+FROM destinos d
+INNER JOIN viajes v
+    ON d.codDestino = v.destino_codDestino
+
+GROUP BY
+    d.codDestino,
+    d.descripcion
+
+HAVING COUNT(*) >
+(
+    SELECT promedio
+    FROM PromedioReservados
+)
+GO
+
+SELECT *
+FROM VW_DestinosModa
+ORDER BY viajesRealizados DESC;
 
 
 -- NOTAS IMPORTANTES DEL DATASET
